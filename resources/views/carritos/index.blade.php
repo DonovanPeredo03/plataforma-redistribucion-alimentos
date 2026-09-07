@@ -1,0 +1,95 @@
+@extends('Layout.app')
+
+@section('contenido')
+
+<div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-gray-100 gap-4">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Carrito de Distribución 🛒</h1>
+        <p class="text-sm text-gray-500 mt-0.5">Alimentos reservados listos para asignación y entrega</p>
+    </div>
+    <a href="{{ route('alimentos.index') }}" class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-200">
+        ← Seguir Explorando
+    </a>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+    <div class="lg:col-span-2 space-y-4">
+        
+
+        <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 hover:shadow-sm transition">
+            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=300&q=80" 
+                 alt="Manzanas" 
+                 class="w-24 h-24 rounded-lg object-cover bg-gray-100 flex-shrink-0">
+            
+            <div class="flex-1 text-center sm:text-left">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Frutas y Verduras</span>
+                <h3 class="font-bold text-gray-900 text-base mt-0.5">Manzanas Red Delicious</h3>
+                <p class="text-xs text-gray-500">Expira: 15/09/2026 • Ubicación: Bodega Central</p>
+                <div class="mt-2 text-xs text-emerald-700 font-medium">Disponible para recolección hoy</div>
+            </div>
+
+            <div class="flex items-center gap-4 border-t sm:border-t-0 pt-3 sm:pt-0 w-full sm:w-auto justify-between sm:justify-end">
+                <div class="text-center sm:text-right">
+                    <span class="block text-xs text-gray-400">Cantidad</span>
+                    <span class="font-bold text-gray-800 text-sm">5 Cajas (50 kg)</span>
+                </div>
+                <button class="text-red-500 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition" title="Eliminar del carrito">
+                    🗑️
+                </button>
+            </div>
+        </div>
+
+    
+        <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 hover:shadow-sm transition">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=300&q=80" 
+                 alt="Pan Artesanal" 
+                 class="w-24 h-24 rounded-lg object-cover bg-gray-100 flex-shrink-0">
+            
+            <div class="flex-1 text-center sm:text-left">
+                <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Panadería</span>
+                <h3 class="font-bold text-gray-900 text-base mt-0.5">Pan Blanco Artesanal</h3>
+                <p class="text-xs text-gray-500">Expira: 10/09/2026 • Ubicación: Panadería Don Juan</p>
+                <div class="mt-2 text-xs text-amber-600 font-medium">Prioridad Alta por Fecha</div>
+            </div>
+
+            <div class="flex items-center gap-4 border-t sm:border-t-0 pt-3 sm:pt-0 w-full sm:w-auto justify-between sm:justify-end">
+                <div class="text-center sm:text-right">
+                    <span class="block text-xs text-gray-400">Cantidad</span>
+                    <span class="font-bold text-gray-800 text-sm">10 Paquetes</span>
+                </div>
+                <button class="text-red-500 hover:text-red-700 p-2 rounded-lg hover:bg-red-50 transition" title="Eliminar del carrito">
+                    🗑️
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 h-fit space-y-4">
+        <h2 class="font-bold text-gray-900 text-lg border-b pb-3">Resumen de Solicitud</h2>
+        
+        <div class="space-y-2 text-sm text-gray-600">
+            <div class="flex justify-between">
+                <span>Total de Ítems:</span>
+                <span class="font-semibold text-gray-900">2 productos</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Peso Aprox.:</span>
+                <span class="font-semibold text-gray-900">~60 kg</span>
+            </div>
+            <div class="flex justify-between">
+                <span>Beneficiarios Estimados:</span>
+                <span class="font-semibold text-emerald-700">~120 familias</span>
+            </div>
+        </div>
+
+        <div class="border-t pt-4">
+            <a href="{{ route('ordenes.index') }}" class="w-full inline-flex justify-center items-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-3 rounded-lg text-sm shadow-sm transition">
+                Confirmar y Generar Orden 📋
+            </a>
+            <p class="text-xs text-gray-400 text-center mt-2">Los insumos quedarán apartados durante 24 horas.</p>
+        </div>
+    </div>
+</div>
+@endsection
