@@ -1,9 +1,11 @@
-@extends('layout.app')
+@extends('Layout.app')
 
 @section('contenido')
-<div class="mb-6">
-    <h1 class="text-2xl font-bold text-gray-800">Bitácora de Actividad del Sistema (Logs)</h1>
-    <p class="text-sm text-gray-500">Registro automático de eventos y auditoría de acciones</p>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+    <div>
+        <h1 class="text-2xl font-bold text-gray-800">Bitácora de Logs y Auditoría 📜</h1>
+        <p class="text-sm text-gray-500">Historial de acciones y eventos del sistema</p>
+    </div>
 </div>
 
 <div class="relative overflow-x-auto shadow-sm sm:rounded-lg border border-gray-200">
@@ -12,24 +14,40 @@
             <tr>
                 <th scope="col" class="px-6 py-3">ID Log</th>
                 <th scope="col" class="px-6 py-3">Usuario</th>
-                <th scope="col" class="px-6 py-3">Acción Realizada</th>
+                <th scope="col" class="px-6 py-3">Acción / Evento</th>
                 <th scope="col" class="px-6 py-3">Fecha y Hora</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4 font-semibold text-gray-900">LOG-884</td>
-                <td class="px-6 py-4 font-medium text-gray-900">Salma Betzabeth Flores</td>
-                <td class="px-6 py-4">Registro de nuevo lote de manzanas en catálogo</td>
-                <td class="px-6 py-4">06/09/2026 - 10:15 AM</td>
-            </tr>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4 font-semibold text-gray-900">LOG-883</td>
-                <td class="px-6 py-4 font-medium text-gray-900">Sistema</td>
-                <td class="px-6 py-4">Generación de orden ORD-2026-001</td>
-                <td class="px-6 py-4">06/09/2026 - 09:30 AM</td>
-            </tr>
+            @forelse($logs as $log)
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="px-6 py-4 font-semibold text-gray-900">
+                        LOG-{{ str_pad($log->id_log, 4, '0', STR_PAD_LEFT) }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        {{ $log->nombre ? $log->nombre . ' ' . $log->apellido : 'Sistema / General' }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-1 rounded border border-gray-200">
+                            {{ $log->accion }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-gray-500">
+                        {{ \Carbon\Carbon::parse($log->fecha)->format('d/m/Y H:i:s') }}
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4" class="px-6 py-4 text-center text-gray-500">
+                        No hay registros de auditoría almacenados.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
+
+    <div class="p-4 bg-white border-t border-gray-200">
+        {{ $logs->links() }}
+    </div>
 </div>
 @endsection

@@ -21,18 +21,40 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4 font-semibold text-gray-900">ORD-2026-001</td>
-                <td class="px-6 py-4 font-medium text-gray-900">Comedor Comunitario Tonallan</td>
-                <td class="px-6 py-4">06/09/2026</td>
-                <td class="px-6 py-4"><span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">En Camino</span></td>
-                <td class="px-6 py-4 text-center space-x-2">
-                    <a href="#" class="font-medium text-blue-600 hover:underline">Consultar</a>
-                    <a href="#" class="font-medium text-amber-600 hover:underline">Editar</a>
-                    <a href="#" class="font-medium text-red-600 hover:underline">Eliminar</a>
-                </td>
-            </tr>
+            @forelse($ordenes as $orden)
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="px-6 py-4 font-semibold text-gray-900">
+                        ORD-2026-{{ str_pad($orden->id_orden, 3, '0', STR_PAD_LEFT) }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        {{ $orden->usuario->nombre ?? 'Usuario' }} {{ $orden->usuario->apellido ?? '' }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $orden->created_at ? $orden->created_at->format('d/m/Y') : now()->format('d/m/Y') }}
+                    </td>
+                    <td class="px-6 py-4">
+                        <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            {{ $orden->estado }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4 text-center space-x-2">
+                        <a href="#" class="font-medium text-blue-600 hover:underline">Consultar</a>
+                        <a href="#" class="font-medium text-amber-600 hover:underline">Editar</a>
+                        <a href="#" class="font-medium text-red-600 hover:underline">Eliminar</a>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" class="px-6 py-4 text-center text-gray-500">
+                        No se encontraron órdenes registradas.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
+
+    <div class="p-4 bg-white border-t border-gray-200">
+        {{ $ordenes->links() }}
+    </div>
 </div>
 @endsection

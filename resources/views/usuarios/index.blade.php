@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('Layout.app')
 
 @section('contenido')
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
@@ -24,19 +24,56 @@
             </tr>
         </thead>
         <tbody>
-            <tr class="bg-white border-b hover:bg-gray-50">
-                <td class="px-6 py-4 font-semibold text-gray-900">1</td>
-                <td class="px-6 py-4 font-medium text-gray-900">Salma Betzabeth Flores</td>
-                <td class="px-6 py-4">salma.flores@gmail.com</td>
-                <td class="px-6 py-4"><span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Administrador</span></td>
-                <td class="px-6 py-4"><span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Activo</span></td>
-                <td class="px-6 py-4 text-center space-x-2">
-                    <a href="#" class="font-medium text-blue-600 hover:underline">Consultar</a>
-                    <a href="#" class="font-medium text-amber-600 hover:underline">Editar</a>
-                    <a href="#" class="font-medium text-red-600 hover:underline">Eliminar</a>
-                </td>
-            </tr>
+            @forelse($usuarios as $usuario)
+                <tr class="bg-white border-b hover:bg-gray-50">
+                    <td class="px-6 py-4 font-semibold text-gray-900">
+                        {{ $usuario->id_usuario }}
+                    </td>
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        {{ $usuario->nombre }} {{ $usuario->apellido }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ $usuario->email }}
+                    </td>
+                    <td class="px-6 py-4">
+                        @php
+                            $nombreRol = $usuario->rol->nombre ?? 'Usuario';
+                            $badgeRol = match($nombreRol) {
+                                'Administrador' => 'bg-purple-100 text-purple-800',
+                                'Donante'       => 'bg-blue-100 text-blue-800',
+                                'Comedor'       => 'bg-amber-100 text-amber-800',
+                                default         => 'bg-gray-100 text-gray-800',
+                            };
+                        @endphp
+                        <span class="{{ $badgeRol }} text-xs font-medium px-2.5 py-0.5 rounded-full">
+                            {{ $nombreRol }}
+                        </span>
+                    </td>
+                    <td class="px-6 py-4">
+                        @if($usuario->estado)
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Activo</span>
+                        @else
+                            <span class="bg-red-100 text-red-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Inactivo</span>
+                        @endif
+                    </td>
+                    <td class="px-6 py-4 text-center space-x-2">
+                        <a href="#" class="font-medium text-blue-600 hover:underline">Consultar</a>
+                        <a href="#" class="font-medium text-amber-600 hover:underline">Editar</a>
+                        <a href="#" class="font-medium text-red-600 hover:underline">Eliminar</a>
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="6" class="px-6 py-4 text-center text-gray-500">
+                        No se encontraron usuarios registrados.
+                    </td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
+
+    <div class="p-4 bg-white border-t border-gray-200">
+        {{ $usuarios->links() }}
+    </div>
 </div>
 @endsection
