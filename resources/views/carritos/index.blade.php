@@ -14,7 +14,6 @@
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-    {{-- Columna de Tarjetas de Productos --}}
     <div class="lg:col-span-2 space-y-4">
         @forelse($carritos as $index => $carrito)
             @if($carrito->detalles && $carrito->detalles->isNotEmpty())
@@ -47,7 +46,7 @@
                                 </span>
                             </div>
                             
-                            {{-- Botón para procesar este carrito individual --}}
+                        
                             <form action="{{ route('ordenes.store') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="id_carrito" value="{{ $carrito->id_carrito }}">
@@ -63,7 +62,7 @@
                     </div>
                 @endforeach
             @else
-                {{-- Fallback estético para carritos sin detalles asignados --}}
+              
                 <div class="bg-white rounded-xl border border-gray-200 p-4 sm:p-5 flex flex-col sm:flex-row items-center gap-4 hover:shadow-sm transition">
                     <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=300&q=80" 
                          alt="Alimento" 
@@ -92,7 +91,7 @@
                             </span>
                         </div>
                         
-                        {{-- Botón para procesar este carrito individual --}}
+                     
                         <form action="{{ route('ordenes.store') }}" method="POST">
                             @csrf
                             <input type="hidden" name="id_carrito" value="{{ $carrito->id_carrito }}">
@@ -118,7 +117,7 @@
         </div>
     </div>
 
-    {{-- Panel Lateral de Resumen --}}
+    
     <div class="bg-gray-50 border border-gray-200 rounded-xl p-5 h-fit space-y-4">
         <h2 class="font-bold text-gray-900 text-lg border-b pb-3">Resumen de Solicitud</h2>
         

@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // 1. ROLES
+    
         DB::table('roles')->insertOrIgnore([
             ['id_rol' => 1, 'nombre' => 'Administrador', 'descripcion' => 'Acceso total'],
             ['id_rol' => 2, 'nombre' => 'Donante', 'descripcion' => 'Usuario donador de alimentos'],
@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
             ['id_rol' => 4, 'nombre' => 'Voluntario', 'descripcion' => 'Apoyo en logística y distribución'],
         ]);
 
-        // 2. USUARIOS
+      
         for ($i = 1; $i <= 11; $i++) {
             DB::table('usuarios')->insertOrIgnore([
                 'id_usuario'     => $i,
@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 3. ALIMENTOS
+
         $alimentos = [
             ['nombre' => 'Manzanas Red', 'categoria' => 'Frutas y Verduras', 'cantidad' => 15, 'unidad' => 'Cajas', 'estado' => 'Disponible', 'descripcion' => 'Caja de manzanas rojas frescas.'],
             ['nombre' => 'Pan Blanco', 'categoria' => 'Panadería', 'cantidad' => 30, 'unidad' => 'Paquetes', 'estado' => 'Por Expirar', 'descripcion' => 'Paquetes de pan de caja.'],
@@ -59,7 +59,7 @@ class DatabaseSeeder extends Seeder
             ]));
         }
 
-        // 4. ÓRDENES Y SUS DETALLES
+        
         for ($i = 1; $i <= 10; $i++) {
             DB::table('ordenes')->insertOrIgnore([
                 'id_orden'   => $i,
@@ -74,7 +74,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 5. CARRITOS Y SUS DETALLES
+        
         for ($i = 1; $i <= 10; $i++) {
             DB::table('carritos')->insertOrIgnore([
                 'id_carrito' => $i,
@@ -88,7 +88,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 6. LISTA DE DESEOS Y SUS DETALLES
+        
         for ($i = 1; $i <= 10; $i++) {
             DB::table('lista_deseos')->insertOrIgnore([
                 'id_lista'   => $i,
@@ -101,7 +101,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-        // 7. LOGS DEL SISTEMA
+      
         for ($i = 1; $i <= 10; $i++) {
             DB::table('logs')->insertOrIgnore([
                 'id_log'     => $i,
