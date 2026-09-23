@@ -6,7 +6,7 @@
         <h1 class="text-2xl font-bold text-gray-800">Gestión de Usuarios</h1>
         <p class="text-sm text-gray-500">Administración de accesos y perfiles en la plataforma</p>
     </div>
-    <a href="/usuarios/nuevo" class="text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2.5 flex items-center gap-2 shadow-sm">
+    <a href="{{ route('usuarios.create') }}" class="text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2.5 flex items-center gap-2 shadow-sm">
         + Registrar Usuario
     </a>
 </div>

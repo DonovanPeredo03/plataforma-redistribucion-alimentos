@@ -7,9 +7,18 @@
         <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Carrito de Distribución 🛒</h1>
         <p class="text-sm text-gray-500 mt-0.5">Alimentos reservados listos para asignación y entrega</p>
     </div>
-    <a href="{{ route('alimentos.index') }}" class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-200">
-        ← Seguir Explorando
-    </a>
+
+    <div class="flex gap-2">
+        <a href="{{ route('carritos.create') }}"
+           class="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-200">
+            + Crear Carrito
+        </a>
+
+        <a href="{{ route('alimentos.index') }}"
+           class="inline-flex items-center justify-center bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold px-4 py-2.5 rounded-lg text-sm transition-all duration-200">
+            ← Seguir Explorando
+        </a>
+    </div>
 </div>
 
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -34,8 +43,8 @@
                                 Expira: {{ isset($detalle->alimento->fecha_caducidad) ? \Carbon\Carbon::parse($detalle->alimento->fecha_caducidad)->format('d/m/Y') : '28/09/2026' }} • Usuario: {{ $carrito->usuario->nombre ?? ('Usuario ' . $carrito->id_usuario) }}
                             </p>
                             <div class="mt-2 text-xs text-emerald-700 font-medium">
-                                Estado: Por Expirar / Listo para entrega
-                            </div>
+    Estado: {{ $carrito->estado }}
+</div>
                         </div>
 
                         <div class="flex flex-wrap sm:flex-nowrap items-center gap-3 border-t sm:border-t-0 pt-3 sm:pt-0 w-full sm:w-auto justify-between sm:justify-end">
@@ -69,27 +78,27 @@
                          class="w-24 h-24 rounded-lg object-cover bg-gray-100 flex-shrink-0">
                     
                     <div class="flex-1 text-center sm:text-left">
-                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">
-                            Abarrotes / Víveres
-                        </span>
+                        <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">
+    Sin alimentos agregados
+</span>
                         <h3 class="font-bold text-gray-900 text-base mt-0.5">
-                            Paquete de Insumos Básicos #{{ $carrito->id_carrito }}
-                        </h3>
+    Carrito #{{ $carrito->id_carrito }}
+</h3>
                         <p class="text-xs text-gray-500">
-                            Expira: 28/09/2026 • Usuario: {{ $carrito->usuario->nombre ?? ('Usuario ' . $carrito->id_usuario) }} {{ $carrito->usuario->apellido ?? '' }}
-                        </p>
+    Usuario: {{ $carrito->usuario->nombre ?? ('Usuario ' . $carrito->id_usuario) }} {{ $carrito->usuario->apellido ?? '' }}
+</p>
                         <div class="mt-2 text-xs text-emerald-700 font-medium">
-                            Estado: Reservado temporalmente
-                        </div>
+    Estado: {{ $carrito->estado }}
+</div>
                     </div>
 
                     <div class="flex flex-wrap sm:flex-nowrap items-center gap-3 border-t sm:border-t-0 pt-3 sm:pt-0 w-full sm:w-auto justify-between sm:justify-end">
                         <div class="text-center sm:text-right">
-                            <span class="block text-xs text-gray-400">Cantidad</span>
-                            <span class="font-bold text-gray-800 text-sm">
-                                1.00 Paquete
-                            </span>
-                        </div>
+    <span class="block text-xs text-gray-400">Cantidad</span>
+    <span class="font-bold text-gray-800 text-sm">
+        0 alimentos
+    </span>
+</div>
                         
                      
                         <form action="{{ route('ordenes.store') }}" method="POST">

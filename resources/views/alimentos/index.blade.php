@@ -2,6 +2,7 @@
 
 @section('contenido')
 
+
 <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-6 mb-6 border-b border-gray-100 gap-4">
     <div>
         <h1 class="text-2xl font-bold text-gray-900 tracking-tight">Catálogo de Alimentos Excedentes</h1>
@@ -27,9 +28,10 @@
 
         <div class="group bg-white rounded-xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 flex flex-col h-full">
             <div class="h-48 w-full bg-gray-100 relative overflow-hidden shrink-0">
-                <img src="{{ $alimento->imagen_url ?? $imagenCategoria }}" 
-                     alt="{{ $alimento->nombre }}" 
-                     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+               
+                <img src="{{ $alimento->ruta_imagen ?? $imagenCategoria }}" 
+     alt="{{ $alimento->nombre }}" 
+     class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                      
                 <span class="absolute top-3 right-3 bg-emerald-100 text-emerald-800 text-xs font-semibold px-2.5 py-1 rounded-full border border-emerald-200 shadow-sm z-10">
                     {{ $alimento->estado ?? 'Disponible' }}
@@ -48,13 +50,13 @@
                     </div>
                     <h3 class="font-bold text-gray-900 text-lg mt-1">{{ $alimento->nombre }}</h3>
                     <p class="text-xs text-gray-500 mt-1">
-                        Presentación: {{ $alimento->presentacion ?? 'N/A' }} • Expira: {{ $alimento->fecha_expiracion ?? 'N/A' }}
-                    </p>
+    Presentación: {{ $alimento->presentacion ?? 'N/A' }} • Expira: {{ $alimento->fecha_caducidad ?? 'N/A' }}
+</p>
                 </div>
                 
                 <div class="flex items-center justify-between mt-6 pt-4 border-t border-gray-100">
                     <span class="text-sm font-extrabold text-gray-800">
-                        {{ $alimento->cantidad ?? 0 }} {{ $alimento->unidad_medida ?? 'Unidades' }}
+                       {{ $alimento->cantidad ?? 0 }} {{ $alimento->unidad ?? 'Unidades' }}
                     </span>
                     <div class="flex items-center space-x-3 text-xs font-semibold">
                         <a href="#" class="text-emerald-600 hover:text-emerald-800 transition">Consultar</a>

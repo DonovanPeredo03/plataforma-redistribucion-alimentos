@@ -6,7 +6,10 @@
         <h1 class="text-2xl font-bold text-gray-800">Órdenes de Redistribución</h1>
         <p class="text-sm text-gray-500">Historial y estado de entregas solicitadas</p>
     </div>
-    <a href="/ordenes/nuevo" class="text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2.5">+ Registrar Órden</a>
+    <a href="{{ route('ordenes.create') }}"
+   class="text-white bg-emerald-600 hover:bg-emerald-700 font-medium rounded-lg text-sm px-4 py-2.5">
+    + Registrar Orden
+</a>
 </div>
 
 <div class="relative overflow-x-auto shadow-sm sm:rounded-lg border border-gray-200">
@@ -30,7 +33,7 @@
                         {{ $orden->usuario->nombre ?? 'Usuario' }} {{ $orden->usuario->apellido ?? '' }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ $orden->created_at ? $orden->created_at->format('d/m/Y') : now()->format('d/m/Y') }}
+                        {{ \Carbon\Carbon::parse($orden->fecha_orden)->format('d/m/Y') }}
                     </td>
                     <td class="px-6 py-4">
                         <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">

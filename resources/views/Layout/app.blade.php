@@ -161,10 +161,29 @@
     </aside>
 
     <div class="p-4 sm:ml-64 mt-16 transition-all duration-300">
-        <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm min-h-[calc(100vh-5rem)]">
-            @yield('contenido')
-        </div>
+    <div class="p-6 bg-white border border-slate-200/80 rounded-2xl shadow-sm min-h-[calc(100vh-5rem)]">
+
+        @if(session('success'))
+    <div class="mb-5 p-4 text-sm text-green-800 rounded-lg bg-green-50 border border-green-200">
+        {{ session('success') }}
     </div>
+@endif
+
+@if($errors->any())
+    <div class="mb-5 p-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-200">
+        <ul class="list-disc list-inside">
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+        @yield('contenido')
+    </div>
+</div>
+
+           
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
