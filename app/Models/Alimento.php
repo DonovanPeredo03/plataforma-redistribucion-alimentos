@@ -25,6 +25,10 @@ class Alimento extends Model
     'fecha_publicacion',
     'fecha_caducidad',
     'estado',
+<<<<<<< HEAD
+=======
+    'ruta_imagen',
+>>>>>>> 0703bea (Actividad 2.5)
 ];
 
     public function usuario(): BelongsTo
