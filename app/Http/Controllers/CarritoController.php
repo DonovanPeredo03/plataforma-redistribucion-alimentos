@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Carrito;
 use App\Models\Usuario;
+use App\Models\Alimento;
+use App\Models\CarritoDetalle;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 
@@ -19,8 +21,9 @@ class CarritoController extends Controller
     public function create()
     {
         $usuarios = Usuario::all();
+        $alimentos = Alimento::all();
 
-        return view('carritos.create', compact('usuarios'));
+        return view('carritos.create', compact('usuarios', 'alimentos'));
     }
 
     public function store(Request $request)
@@ -28,16 +31,31 @@ class CarritoController extends Controller
         $request->validate([
             'id_usuario' => 'required|exists:usuarios,id_usuario',
             'estado' => 'required|string|max:20',
+            'alimentos' => 'required|array',
         ]);
 
         $idCarrito = (Carrito::max('id_carrito') ?? 0) + 1;
 
-        Carrito::create([
+        $carrito = Carrito::create([
             'id_carrito' => $idCarrito,
             'id_usuario' => $request->id_usuario,
             'fecha_creacion' => now(),
             'estado' => $request->estado,
         ]);
+
+        $idDetalle = CarritoDetalle::max('id_detalle_carrito') ?? 0;
+
+        foreach ($request->alimentos as $idAlimento => $data) {
+            if (isset($data['seleccionado']) && $data['seleccionado'] == '1') {
+                $idDetalle++;
+                CarritoDetalle::create([
+                    'id_detalle_carrito' => $idDetalle,
+                    'id_carrito' => $idCarrito,
+                    'id_alimento' => $idAlimento,
+                    'cantidad' => $data['cantidad'] ?? 1,
+                ]);
+            }
+        }
 
         return redirect()->route('carritos.index')
             ->with('success', 'Carrito registrado correctamente.');
@@ -101,10 +119,11 @@ class CarritoController extends Controller
         }
 
         try {
+            $carrito->detalles()->delete();
             $carrito->delete();
         } catch (QueryException $e) {
             return redirect()->route('carritos.index')
-                ->with('error', 'No se puede eliminar el carrito porque tiene alimentos asociados en su detalle.');
+                ->with('error', 'No se puede eliminar el carrito debido a un error en la base de datos.');
         }
 
         return redirect()->route('carritos.index')
