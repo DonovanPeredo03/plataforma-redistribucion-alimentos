@@ -9,18 +9,34 @@ use Illuminate\Foundation\Configuration\Middleware;
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
         web: __DIR__.'/../routes/web.php',
+        api: __DIR__.'/../routes/api.php',
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-    $middleware->redirectGuestsTo(fn (Request $r) => route('admin.iniciar_sesion'));
-    $middleware->redirectUsersTo(fn (Request $r) => route('admin.panel'));
-})
+        $middleware->redirectGuestsTo(
+            fn (Request $r) => route('admin.iniciar_sesion')
+        );
+
+        $middleware->redirectUsersTo(
+            fn (Request $r) => route('admin.panel')
+        );
+
+        $middleware->alias([
+            'verificar.tipo' => \App\Http\Middleware\VerificarTipoUsuarioApi::class,
+        ]);
+    })
     ->withExceptions(function (Exceptions $exceptions) {
-    $exceptions->render(function (HttpException $e, Request $request) {
-        if ($e->getStatusCode() === 403 && auth('admin')->check()) {
-            return redirect()->route('admin.panel')
-                ->with('acceso_denegado', 'No tienes permiso para realizar esta acción.');
-        }
-    });
-})->create();
+        $exceptions->shouldRenderJsonWhen(
+            fn (Request $request, \Throwable $e) =>
+                $request->is('api/*') || $request->expectsJson()
+        );
+
+        $exceptions->render(function (HttpException $e, Request $request) {
+            if ($e->getStatusCode() === 403 && auth('admin')->check()) {
+                return redirect()->route('admin.panel')
+                    ->with('acceso_denegado', 'No tienes permiso para realizar esta acción.');
+            }
+        });
+    })
+    ->create();

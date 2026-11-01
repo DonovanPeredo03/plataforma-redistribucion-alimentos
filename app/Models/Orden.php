@@ -13,6 +13,7 @@ class Orden extends Model
     protected $primaryKey = 'id_orden';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
     'id_orden',

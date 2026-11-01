@@ -13,6 +13,7 @@ class ListaDeseo extends Model
     protected $primaryKey = 'id_lista';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
     'id_lista',

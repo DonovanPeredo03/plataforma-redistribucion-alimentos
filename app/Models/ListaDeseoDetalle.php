@@ -12,6 +12,7 @@ class ListaDeseoDetalle extends Model
     protected $primaryKey = 'id_detalle_lista';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     protected $fillable = [
     'id_detalle_lista',
