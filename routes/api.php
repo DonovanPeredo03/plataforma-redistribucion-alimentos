@@ -10,11 +10,30 @@ use App\Http\Controllers\Api\V1\AlimentoController;
 use App\Http\Controllers\Api\V1\OrdenController;
 use App\Http\Controllers\Api\V1\ListaDeseoController;
 
+// Controladores de la actividad 4.2
+use App\Http\Controllers\Api\V1\AlimentoApiController;
+use App\Http\Controllers\Api\V1\OrdenApiController;
+
 
 Route::prefix('v1')->group(function () {
 
     // ==========================================
-    // AUTENTICACIÓN
+    // ACTIVIDAD 4.2 - API REST SIN AUTENTICACIÓN
+    // ==========================================
+
+    Route::prefix('actividad-4-2')->group(function () {
+
+        // CRUD de alimentos
+        Route::apiResource('alimentos', AlimentoApiController::class);
+
+        // CRUD de órdenes
+        Route::apiResource('ordenes', OrdenApiController::class);
+
+    });
+
+
+    // ==========================================
+    // AUTENTICACIÓN - ACTIVIDAD 4.1
     // ==========================================
 
     Route::post('cliente/login', [ClienteAuthController::class, 'iniciarSesion']);
