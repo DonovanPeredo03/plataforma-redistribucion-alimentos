@@ -10,7 +10,7 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        // Primero los administradores y permisos (no dependen de las demás tablas)
+      
         $this->call(AdministradoresSeeder::class);
 
         DB::table('roles')->insertOrIgnore([
@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             ['id_rol' => 2, 'nombre' => 'Donante', 'descripcion' => 'Usuario donador de alimentos'],
             ['id_rol' => 3, 'nombre' => 'Comedor', 'descripcion' => 'Representante de comedor comunitario'],
             ['id_rol' => 4, 'nombre' => 'Voluntario', 'descripcion' => 'Apoyo en logística y distribución'],
+            ['id_rol' => 5, 'nombre' => 'Cliente', 'descripcion' => 'Cliente final de la API'],
         ]);
 
         for ($i = 1; $i <= 11; $i++) {
@@ -59,7 +60,7 @@ class DatabaseSeeder extends Seeder
             ]));
         }
 
-        // Órdenes
+       
         for ($i = 1; $i <= 10; $i++) {
             DB::table('ordenes')->insertOrIgnore([
                 'id_orden'      => $i,

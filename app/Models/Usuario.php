@@ -12,6 +12,10 @@ class Usuario extends Authenticatable
 
     use HasApiTokens;
 
+    public const ROL_CLIENTE = 5;
+    public $incrementing = false;
+    protected $keyType = 'int';
+
     protected $table = 'usuarios';
 
     protected $primaryKey = 'id_usuario';

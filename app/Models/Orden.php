@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Orden extends Model
 {
+    public const CANCELABLES = ['Pendiente'];
+
     protected $table = 'ordenes';
 
     protected $primaryKey = 'id_orden';
@@ -32,5 +34,9 @@ class Orden extends Model
     public function detalles(): HasMany
     {
         return $this->hasMany(OrdenDetalle::class, 'id_orden', 'id_orden');
+    }
+    public function scopeDelUsuario($query, $idUsuario)
+    {
+    return $query->where('id_usuario', $idUsuario);
     }
 }
