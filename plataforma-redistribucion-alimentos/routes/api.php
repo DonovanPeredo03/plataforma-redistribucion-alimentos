@@ -100,26 +100,67 @@ Route::prefix('v1')->group(function () {
     // ==========================================
     // RUTAS ADMINISTRATIVAS - ACTIVIDAD 4.3
     // ==========================================
-    Route::middleware(['auth:sanctum', 'verificar.tipo:admin'])
-        ->prefix('admin')
-        ->group(function () {
-            Route::get('usuarios', [UsuarioController::class, 'index']);
-            Route::patch('usuarios/{id}/estado', [UsuarioController::class, 'cambiarEstado']);
-            Route::get('recursos', [RecursoController::class, 'index']);
-            Route::get('recursos/{id}', [RecursoController::class, 'show']);
-            Route::post('recursos', [RecursoController::class, 'store']);
-            Route::match(['put', 'patch'], 'recursos/{id}', [RecursoController::class, 'update']);
-            Route::delete('recursos/{id}', [RecursoController::class, 'destroy']);
-            Route::get('reportes', [ReporteController::class, 'index']);
-            Route::get('perfil', fn(Request $request) => response()->json(['mensaje' => 'Perfil del administrador.', 'administrador' => $request->user()]));
-            Route::post('logout', [AuthController::class, 'logout']);
-            Route::get('alimentos', [AlimentoController::class, 'index']);
-            Route::get('alimentos/{id}', [AlimentoController::class, 'show']);
-            Route::put('alimentos/{id}', [AlimentoController::class, 'update']);
-            Route::delete('alimentos/{id}', [AlimentoController::class, 'destroy']);
-            Route::get('ordenes', [OrdenController::class, 'adminIndex']);
-            Route::get('ordenes/{id}', [OrdenController::class, 'adminShow']);
-            Route::patch('ordenes/{id}/estado', [OrdenController::class, 'updateEstado']);
-        });
+    
+// ==========================================
+// RUTAS ADMINISTRATIVAS - ACTIVIDAD 4.3
+// ==========================================
+
+Route::prefix('admin')->group(function () {
+
+    // ACTIVIDAD 5.1
+    // Consultas públicas temporales para React
+    // Sin autenticación Sanctum durante las pruebas
+
+    Route::get('recursos', [RecursoController::class, 'index']);
+
+    Route::get('recursos/{id}', [RecursoController::class, 'show']);
+
+
+    // RUTAS ADMINISTRATIVAS PROTEGIDAS
+    // Se mantiene la autenticación para las
+    // operaciones administrativas restantes
+
+    Route::middleware([
+        'auth:sanctum',
+        'verificar.tipo:admin'
+    ])->group(function () {
+
+        Route::get('usuarios', [UsuarioController::class, 'index']);
+
+        Route::patch('usuarios/{id}/estado', [UsuarioController::class, 'cambiarEstado']);
+
+        Route::post('recursos', [RecursoController::class, 'store']);
+
+        Route::match(['put', 'patch'], 'recursos/{id}', [RecursoController::class, 'update']);
+
+        Route::delete('recursos/{id}', [RecursoController::class, 'destroy']);
+
+        Route::get('reportes', [ReporteController::class, 'index']);
+
+        Route::get('perfil', fn(Request $request) => response()->json([
+            'mensaje' => 'Perfil del administrador.',
+            'administrador' => $request->user()
+        ]));
+
+        Route::post('logout', [AuthController::class, 'logout']);
+
+        Route::get('alimentos', [AlimentoController::class, 'index']);
+
+        Route::get('alimentos/{id}', [AlimentoController::class, 'show']);
+
+        Route::put('alimentos/{id}', [AlimentoController::class, 'update']);
+
+        Route::delete('alimentos/{id}', [AlimentoController::class, 'destroy']);
+
+        Route::get('ordenes', [OrdenController::class, 'adminIndex']);
+
+        Route::get('ordenes/{id}', [OrdenController::class, 'adminShow']);
+
+        Route::patch('ordenes/{id}/estado', [OrdenController::class, 'updateEstado']);
+
+    });
+
+});
+
 
 });

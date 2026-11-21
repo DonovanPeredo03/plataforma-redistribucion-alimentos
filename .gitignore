@@ -22,3 +22,35 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# ==========================================
+# ACTIVIDAD 5.1 - ARCHIVOS QUE NO SE SUBEN
+# ==========================================
+
+# Variables privadas
+**/.env
+**/.env.*
+!**/.env.example
+
+# Dependencias instaladas
+**/node_modules/
+**/vendor/
+
+# Archivos generados
+**/dist/
+**/build/
+**/*.log
+
+# Base de datos local
+**/database/*.sqlite
+**/database/*.sqlite-*
+
+# Enlaces locales de almacenamiento
+**/public/storage/
+
+# Archivos temporales Laravel
+**/storage/framework/cache/
+**/storage/framework/sessions/
+**/storage/framework/views/
+**/storage/logs/
+
