@@ -1,0 +1,177 @@
+/* PAGINA DE INFORMACION */
+
+.informacion-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: auto;
+    padding: 40px 25px;
+}
+
+/* ENCABEZADO */
+
+.informacion-hero {
+    background: linear-gradient(135deg, #174b35, #348653);
+    color: white;
+    text-align: center;
+    border-radius: 20px;
+    padding: 60px 25px;
+}
+
+.informacion-hero span {
+    background: #ffffff25;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.informacion-hero h1 {
+    font-size: clamp(30px, 5vw, 45px);
+    margin: 25px 0 15px;
+}
+
+.informacion-hero p {
+    max-width: 750px;
+    margin: auto;
+    color: #e0f2e5;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+/* ESTADISTICAS */
+
+.estadisticas-section {
+    margin-top: 45px;
+}
+
+.estadisticas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.estadistica-card {
+    background: white;
+    border: 1px solid #e0e8e1;
+    border-radius: 15px;
+    text-align: center;
+    padding: 30px 15px;
+    box-shadow: 0 4px 15px #00000008;
+    transition: transform 0.2s;
+}
+
+.estadistica-card:hover {
+    transform: translateY(-5px);
+}
+
+.estadistica-card span {
+    font-size: 35px;
+}
+
+.estadistica-card h3 {
+    font-size: 42px;
+    color: #226644;
+    margin: 15px 0 10px;
+}
+
+.estadistica-card p {
+    color: #64756a;
+    font-size: 15px;
+}
+
+/* CATEGORIAS DINAMICAS */
+
+.categorias-section {
+    margin-top: 45px;
+}
+
+.categorias-section h2 {
+    color: #174b35;
+    font-size: 28px;
+}
+
+.categorias-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.categoria-card {
+    background: white;
+    border: 1px solid #e0e8e1;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.categoria-card h3 {
+    color: #174b35;
+    margin: 0 0 10px;
+}
+
+.categoria-card p {
+    color: #64756a;
+}
+
+.categoria-barra {
+    height: 12px;
+    background: #e4efe6;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.categoria-progreso {
+    height: 100%;
+    background: linear-gradient(90deg, #226644, #55a86d);
+    border-radius: 20px;
+    transition: width 0.5s ease;
+}
+
+/* MISION DE LA PLATAFORMA */
+
+.mision-section {
+    background: #e4efe6;
+    border-radius: 18px;
+    padding: 45px 25px;
+    margin-top: 45px;
+    text-align: center;
+}
+
+.mision-section h2 {
+    font-size: 30px;
+    color: #174b35;
+    margin-top: 0;
+}
+
+.mision-section p {
+    color: #52745b;
+    max-width: 700px;
+    margin: 0 auto 25px;
+    line-height: 1.8;
+}
+
+.mision-section .btn-detalle {
+    display: inline-block;
+}
+
+/* DISEÑO RESPONSIVO */
+
+@media (max-width: 900px) {
+    .estadisticas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+    .informacion-container {
+        padding: 25px 15px;
+    }
+
+    .estadisticas-grid,
+    .categorias-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .informacion-hero {
+        padding: 40px 20px;
+    }
+}

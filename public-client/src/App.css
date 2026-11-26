@@ -1,0 +1,509 @@
+/* MENU DE NAVEGACION */
+
+.navbar {
+    background: #174b35;
+    color: white;
+    padding: 18px 25px;
+}
+
+.navbar-container {
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-icon {
+    font-size: 35px;
+}
+
+.navbar-brand strong {
+    display: block;
+    font-size: 25px;
+}
+
+.navbar-brand small {
+    color: #cce5d3;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 25px;
+}
+
+.navbar-links a {
+    padding: 10px 15px;
+    border-radius: 8px;
+}
+
+.navbar-links a:hover,
+.navbar-links a.active {
+    background: #286447;
+}
+
+.public-label {
+    background: #286447;
+    padding: 9px 15px;
+    border-radius: 25px;
+    font-size: 13px;
+}
+
+/* SECCION PRINCIPAL */
+
+.hero {
+    background: linear-gradient(135deg, #174b35, #348653);
+    color: white;
+    padding: 75px 25px;
+    text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: auto;
+}
+
+.hero-label {
+    background: #ffffff25;
+    padding: 9px 18px;
+    border-radius: 25px;
+    font-size: 14px;
+}
+
+.hero h1 {
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 25px 0 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #e0f2e5;
+}
+
+.btn-hero {
+    display: inline-block;
+    background: white;
+    color: #174b35;
+    padding: 14px 25px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* CATALOGO */
+
+.catalogo-container {
+    max-width: 1250px;
+    margin: auto;
+    padding: 45px 25px;
+}
+
+.section-header h2 {
+    font-size: 30px;
+    color: #174b35;
+    margin-bottom: 10px;
+}
+
+.section-header p {
+    color: #64756a;
+}
+
+.catalogo-filtros {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.catalogo-filtros input,
+.catalogo-filtros select {
+    background: white;
+    padding: 14px;
+    border: 1px solid #d0ddd3;
+    border-radius: 8px;
+    color: #24382b;
+}
+
+.catalogo-filtros input {
+    flex: 1;
+    min-width: 200px;
+}
+
+.catalogo-filtros select {
+    min-width: 200px;
+}
+
+.resultados-count {
+    color: #64756a;
+    margin: 20px 0;
+}
+
+.catalogo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* TARJETAS DE ALIMENTOS */
+
+.alimento-card {
+    background: white;
+    border: 1px solid #e0e8e1;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px #00000008;
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.alimento-card:hover {
+    transform: translateY(-5px);
+}
+
+.card-image-container {
+    position: relative;
+    height: 210px;
+    background: #edf3ed;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.estado-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.estado-disponible {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.estado-expirar {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.card-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-category {
+    color: #348653;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.card-content h3 {
+    font-size: 22px;
+    margin: 12px 0;
+    color: #174b35;
+}
+
+.card-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #64756a;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-quantity {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 15px 0;
+    margin-top: auto;
+    border-top: 1px solid #e5e7eb;
+    font-size: 14px;
+}
+
+.btn-detalle,
+.btn-reintentar {
+    background: #226644;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.btn-detalle:hover,
+.btn-reintentar:hover {
+    background: #174b35;
+}
+
+/* INDICADORES DE CARGA */
+
+.loading-container,
+.mensaje-estado {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 15px;
+    margin: 25px 0;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #dce9df;
+    border-top-color: #26804b;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.mensaje-icono {
+    font-size: 45px;
+}
+
+.mensaje-estado p,
+.loading-container p {
+    color: #64756a;
+}
+
+.btn-reintentar {
+    margin-top: 15px;
+}
+
+/* PIE DE PAGINA */
+
+.footer {
+    background: #174b35;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: auto;
+}
+
+.footer p {
+    color: #cce5d3;
+    font-size: 14px;
+}
+
+/* DISEÑO RESPONSIVO */
+
+@media (max-width: 700px) {
+    .navbar-container {
+        flex-direction: column;
+    }
+
+    .navbar-links {
+        gap: 10px;
+    }
+
+    .public-label {
+        display: none;
+    }
+
+    .hero {
+        padding: 50px 20px;
+    }
+
+    .catalogo-filtros {
+        flex-direction: column;
+    }
+
+    .catalogo-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* VISTA DE DETALLE DEL ALIMENTO */
+
+.detalle-container {
+    width: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 40px 25px;
+}
+
+.btn-volver {
+    display: inline-block;
+    color: #226644;
+    font-weight: bold;
+    margin-bottom: 30px;
+    padding: 12px 18px;
+    background: #e4efe6;
+    border-radius: 8px;
+}
+
+.btn-volver:hover {
+    background: #d1e5d5;
+}
+
+.detalle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    background: white;
+    border: 1px solid #e0e8e1;
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: 0 4px 15px #00000008;
+}
+
+.detalle-galeria {
+    min-width: 0;
+}
+
+.galeria-principal {
+    background: #f0f5f0;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.detalle-imagen {
+    display: block;
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+}
+
+.galeria-miniaturas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.miniatura {
+    width: 85px;
+    height: 85px;
+    border: 2px solid #dce5de;
+    border-radius: 10px;
+    background: white;
+    overflow: hidden;
+    padding: 4px;
+}
+
+.miniatura img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.miniatura-activa {
+    border-color: #26804b;
+}
+
+.galeria-contador {
+    text-align: center;
+    color: #64756a;
+    font-size: 14px;
+}
+
+/* INFORMACION DEL ALIMENTO */
+
+.detalle-informacion h1 {
+    font-size: 38px;
+    color: #174b35;
+    margin: 15px 0;
+}
+
+.detalle-informacion h2 {
+    font-size: 21px;
+    color: #174b35;
+    margin-top: 30px;
+}
+
+.detalle-estado {
+    display: inline-block;
+    padding: 9px 16px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.detalle-descripcion {
+    color: #64756a;
+    line-height: 1.8;
+}
+
+.detalle-datos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.detalle-datos div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: #f3f7f3;
+    padding: 18px;
+    border-radius: 10px;
+}
+
+.detalle-datos strong {
+    font-size: 13px;
+    color: #64756a;
+}
+
+.detalle-datos span {
+    color: #174b35;
+    font-weight: bold;
+}
+
+/* DETALLE RESPONSIVO */
+
+@media (max-width: 850px) {
+    .detalle-grid {
+        grid-template-columns: 1fr;
+        padding: 20px;
+        gap: 25px;
+    }
+
+    .detalle-imagen {
+        height: 320px;
+    }
+
+    .detalle-informacion h1 {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .detalle-datos {
+        grid-template-columns: 1fr;
+    }
+
+    .detalle-container {
+        padding: 25px 15px;
+    }
+
+    .detalle-imagen {
+        height: 250px;
+    }
+}
